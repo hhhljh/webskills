@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>slide_first</title>
+	<script src="./js/jquery-1.12.4.min.js"></script>
+</head>
+<style>
+	*{margin:0;padding:0;}
+	.slide{height:500px;overflow:hidden;}
+	ul, li{list-style:none; height:100%;}
+	ul{width:300%;display:flex;}
+	li{width:33.33%;position: relative;}
+	.slide .bg{position: absolute;left:0;right:0;bottom:0;top:0;}
+	.slide .slide1 .bg{background: #faa;}
+	.slide .slide2 .bg{background: #afa;}
+	.slide .slide3 .bg{background: #aff;}
+	.slide li.active *{opacity:1;}
+</style>
+<body>
+	<div class="slide">
+		<ul>
+			<li class="slide1 active">
+				<div class="bg"></div>
+			</li>
+			<li class="slide2">
+				<div class="bg"></div>
+			</li>
+			<li class="slide3">
+				<div class="bg"></div>
+			</li>
+		</ul>
+	</div>
+	<script>
+		function slide(){
+			var pos =  0;
+			var len = $(".slide li").length;
+			var obj = $(".slide ul");
+			var timer = null;
+			function play(){
+				clearTimeout(timer);
+				if(++pos>=len) pos = 0;
+				obj.animate({
+					marginLeft:-pos*100+"%"
+				},1000,function(){
+					$("li.active",obj).removeClass("active");
+					$("li",obj).eq(pos).addClass("active");
+				})
+				console.log(1);
+				timer = setTimeout(play,3000);
+			}
+			timer = setTimeout(play,3000);
+		}
+		slide();
+	</script>
+</body>
+</html>
