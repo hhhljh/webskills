@@ -3,4 +3,5 @@
 ### 1과제
 ### 2과제
 ### 3과제
+- [3과제 slide 연습중](https://github.com/hhhljh/webskills/tree/master/20180611_JS%EC%97%B0%EC%8A%B5)
 ### 4과제
