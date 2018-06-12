@@ -6,36 +6,51 @@
 	<script src="./js/jquery-1.12.4.min.js"></script>
 </head>
 <style>
-	*{margin:0;padding:0;}
-	.slide{height:100%;overflow:hidden;}
-	ul, li{list-style:none;}
-	
-
+	*{margin:0;padding:0;text-decoration:none;}
+	.slide{height:400px;overflow:hidden;position: relative;}
+	ul, li{list-style:none;height:100%;}
+	ul{width:300%;display:flex;}
+	li{width:33.33%;position: relative;}
+	.bg{position: absolute;left:0;right:0;bottom:0;top:0;}
+	.slide1 .bg{background:#faa;}
+	.slide2 .bg{background:#afa;}
+	.slide3 .bg{background:#aff;}
+	.arrow{position: absolute;color:#aaa;font-size:50px;width:50px;height:50px;line-height:50px;top:calc(50% - 25px);opacity:.8;}
+	.arrow.left{left:10px;}
+	.arrow.right{right:10px;}
 </style>
 <body>
 	<div class="slide">
 		<ul>
 			<li class="slide1 active">
 				<div class="bg"></div>
-				<div class="bar">
-					<div class="lone_bar"></div>
-				</div>
 			</li>
 			<li class="slide2">
 				<div class="bg"></div>
-				<div class="bar">
-					<div class="lone_bar"></div>
-				</div>
 			</li>
 			<li class="slide3">
 				<div class="bg"></div>
-				<div class="bar">
-					<div class="lone_bar"></div>
-				</div>
 			</li>
 		</ul>
+		<!-- <a href="#" class="arrow left">&lt;</a>
+		<a href="#" class="arrow right">&gt;</a> -->
 	</div>
 	<script>
+		var pos = 0;
+		var obj = $(".slide ul");
+		var len = $(".slide li").length;
+		var timer = null;
+		function slide(){
+			obj.append($(".slide li").eq(0).clone().removeClass("active"));
+			obj.css("width",(len+1)*100 + "%");
+			function play(){
+				clearTimeout(timer);
+				pos++;
+				obj.animate({
+					marginLeft:-pos*100+"%"
+				},1000,function )
+			}
+		}
 		
 	</script>
 </body>
