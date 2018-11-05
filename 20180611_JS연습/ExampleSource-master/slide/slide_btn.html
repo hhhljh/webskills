@@ -10,7 +10,7 @@
 	.slide{height:400px;overflow:hidden;position: relative;}
 	ul, li{list-style:none;height:100%;}
 	ul{width:300%;display:flex;}
-	li{width:33.33%;position: relative;}
+	li{width:33.33%;position: relative;display:flex;justify-content:center;align-items:center;}
 	.bg{position: absolute;left:0;right:0;bottom:0;top:0;}
 	.slide1 .bg{background:#faa;}
 	.slide2 .bg{background:#afa;}
@@ -18,22 +18,54 @@
 	.arrow{position: absolute;color:#aaa;font-size:50px;width:50px;height:50px;line-height:50px;top:calc(50% - 25px);opacity:.8;}
 	.arrow.left{left:10px;}
 	.arrow.right{right:10px;}
+	.txt{text-align:center;position: relative;}
+	.txt .h3{color:rgba(0,0,0,.7);margin:5px 0;font-size:40px;}
+	.txt .h5{color:rgba(255, 255, 255, .9);font-size:20px;font-weight:400;margin:10px 0;display:none;position: absolute;width:50px;left:calc(50% - 25px);}
+	.button{width:100px;height:50px;background:rgba(255, 255, 255, 0.8);border-radius:5px;border:3px solid rgba(255,255,255,.3);color:#666;}
+	.button:hover{background:rgba(255,255,255,.3);border:3px solid rgba(255,255,255,.8);transition:.3s;}
+	.button:hover~.h5{display:block;transform:translateY(20px)}
+	button{background:inherit;border:inherit;}
+	.radio{display:flex;position:fixed;top:370px;left:calc(50% - 50px);width:100px;}
+	.radio a{height:15px;width:15px;border-radius:50%;background:rgba(255,255,255,.8);margin:0  10px;}
+	.arrow{position:fixed;top:0;line-height:400px;}
 </style>
 <body>
 	<div class="slide">
 		<ul>
 			<li class="slide1 active">
 				<div class="bg"></div>
+				<div class="txt">
+					<h3 class="h3">Name</h3>
+					<button class="button">MouseOn</button>
+					<h5 class="h5">info</h5>
+				</div>
 			</li>
 			<li class="slide2">
 				<div class="bg"></div>
+				<div class="txt">
+					<h3 class="h3">Name</h3>
+					<button class="button">MouseOn</button>
+					<h5 class="h5">info</h5>
+				</div>
 			</li>
 			<li class="slide3">
 				<div class="bg"></div>
+				<div class="txt">
+					<h3 class="h3">Name</h3>
+					<button class="button">MouseOn</button>
+					<h5 class="h5">info</h5>
+				</div>
 			</li>
 		</ul>
-		<!-- <a href="#" class="arrow left">&lt;</a>
-		<a href="#" class="arrow right">&gt;</a> -->
+		<div class="radio">
+			<a href="#" class="chk1"></a>									
+			<a href="#" class="chk2"></a>
+			<a href="#" class="chk3"></a>
+		</div>
+	</div>
+	<div class="arrow">
+		<a href="#" class="arrow left" id="leclick">&lt;</a>
+		<a href="#" class="arrow right" id="riclick">&gt;</a>
 	</div>
 	<script>
 		var pos = 0;
@@ -48,9 +80,24 @@
 				pos++;
 				obj.animate({
 					marginLeft:-pos*100+"%"
-				},1000,function )
+				}, 1000 , function(){
+					if(pos>=len){
+						obj.css("marginLeft","0");
+						pos = 0;
+					}
+					$("li.active",obj).removeClass("active");
+					$("li",obj).eq(pos).addClass("active");
+				})
+				timer = setTimeout(play,4000);
+			}
+			timer = setTimeout(play,4000);
+		}
+		function forRadio(){
+			if(pos = ""){
+				$("#chk'+pos+'").css("background:rgba(0,0,0,.7)");
 			}
 		}
+		slide();
 		
 	</script>
 </body>

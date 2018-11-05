@@ -43,6 +43,10 @@
 				obj.animate({
 					marginLeft:-pos*100+"%"
 				},1000,function(){
+					if(pos>=len){
+						obj.css("marginLeft","0");
+						pos = 0;
+					}
 					$("li.active",obj).removeClass("active");
 					$("li",obj).eq(pos).addClass("active");
 				})
